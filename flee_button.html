@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>警告！高危操作！</title>
+    <style>
+        body {
+            background: #ff69b4;
+            font-family: 'Comic Sans MS', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            transition: all 0.5s;
+        }
+
+        h1 {
+            color: #ffd700;
+            text-shadow: 2px 2px #ff0000;
+            font-size: 2.5em;
+            text-align: center;
+            animation: rainbow 2s infinite;
+        }
+
+        #dangerButton {
+            padding: 20px 40px;
+            font-size: 1.5em;
+            background: #00ff00;
+            border: 5px dashed #ff0000;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: absolute;
+        }
+
+        #dangerButton:hover {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        #message {
+            color: white;
+            font-size: 1.2em;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            25% { color: #00ff00; }
+            50% { color: #0000ff; }
+            75% { color: #ff00ff; }
+            100% { color: #ff0000; }
+        }
+    </style>
+</head>
+<body>
+    <h1>⚠️ 高危警告！⚠️<br>千万不要点击下面的按钮！</h1>
+    <button id="dangerButton" onmouseover="escapeButton()">绝对不要点我！</button>
+    <div id="message">温馨提示：本按钮患有严重社交恐惧症</div>
+
+    <script>
+        function escapeButton() {
+            const button = document.getElementById('dangerButton');
+            const message = document.getElementById('message');
+            const messages = [
+                "都说了不要点啦！",
+                "给按钮留点私人空间！",
+                "你这是职场性骚扰！",
+                "按钮需要心理辅导了",
+                "你点不到我吧～",
+                "考虑过按钮的感受吗？",
+                "再点我就要报警了！"
+            ];
+
+            // 随机移动按钮
+            const maxX = window.innerWidth - 200;
+            const maxY = window.innerHeight - 100;
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+            
+            button.style.left = newX + 'px';
+            button.style.top = newY + 'px';
+            
+            // 随机显示提示语
+            message.textContent = messages[Math.floor(Math.random() * messages.length)];
+            
+            // 随机旋转按钮
+            button.style.transform = `rotate(${Math.random() * 360}deg)`;
+        }
+
+        // 给按钮添加点击事件
+        document.getElementById('dangerButton').addEventListener('click', function() {
+            alert("你竟然点到了？！\n好吧，其实这是个假警报...\n不过你手速真快！\n奖励你一个程序员笑话：\n为什么程序员总分不清万圣节和圣诞节？\n因为 Oct 31 == Dec 25！");
+            document.body.style.background = "#00ff00";
+            this.style.display = "none";
+        });
+    </script>
+</body>
+</html>
